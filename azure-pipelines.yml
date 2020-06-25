@@ -16,7 +16,4 @@ stages:
              displayName: Check env
              inputs:
                command: run
-               arguments: >-
-                 -e 'NODE_CONFIG={"hello": "world"}'
-                 node:latest
-                 env
+               arguments: "-e 'NODE_CONFIG={\"hello\": \"world\"}' node:latest env"
