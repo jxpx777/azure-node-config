@@ -1,0 +1,19 @@
+name: iicf_poc.$(BuildID).$(Date:yyyyMMdd).$(Rev:r)
+stages:
+  - stage: check
+    displayName: Check behavior
+    jobs:
+        - job: checkIt
+          displayName: Perform the check
+          pool:
+            vmImage: ubuntu-latest
+          steps:
+           - task: DockerInstaller@0
+             displayName: Install Docker
+             inputs:
+                releaseType: stable
+           - task: Docker@2
+             displayName: Check env
+             inputs:
+               command: run
+               arguments: -e 'NODE_CONFIG={"hello": "world"}' node:latest env
